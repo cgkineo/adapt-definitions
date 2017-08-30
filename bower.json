@@ -1,0 +1,15 @@
+{
+  "name": "adapt-definitions",
+  "version": "1.0.0",
+  "framework": ">=2.0.0",
+  "displayName" : "Definitions",
+  "extension" : "definitions",
+  "description": "Glossary - Popup word definitions",
+  "main": "/js/adapt-definitions.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-extension"
+  ],
+  "license": "GPLv3",
+  "targetAttribute": "_definitions"
+}
