@@ -27,7 +27,7 @@ define([
             _.bindAll(this, "a11y_text", "onAbbrClick");
             this.listenTo(Adapt, "app:dataLoaded", this.loadData);
 
-            $('body').on('click', "abbr[definition]", this.onAbbrClick);
+            $('body').on('click', "[definition]", this.onAbbrClick);
         },
 
         loadData: function() {
@@ -74,7 +74,7 @@ define([
             });
             $html.find("*").add($html).each(function(index, node) {
 
-                if (node.nodeName.toLowerCase() === "abbr") {
+                if ($(node).is("[definition]")) {
                     return;
                 }
 
@@ -91,7 +91,7 @@ define([
                     }
 
                     var text = child.textContent;
-                    if (!text.search(this._regexp)) {
+                    if (text.search(this._regexp) < 0) {
                         newChildNodes.push(child);
                         continue;
                     };
@@ -103,7 +103,7 @@ define([
                             var item = this._items[d];
                             if (!match.match(item._regexp)) continue;
 
-                            return "<abbr definition='"+item.definition+"'>"+match+"</abbr>";
+                            return "<span definition='"+item.definition+"'>"+match+"</span>";
                         }
                     }.bind(this));
 
