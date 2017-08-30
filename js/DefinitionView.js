@@ -36,7 +36,10 @@ define([
         setUpEventListeners: function() {
             _.bindAll(this, "onBodyClick");
             $("body").on("click", this.onBodyClick);
-            this.listenTo(Adapt, "remove", this.remove);
+            this.listenTo(Adapt, {
+                "remove": this.remove,
+                "definition:remove": this.remove
+            });
         },
 
         onBodyClick: function() {

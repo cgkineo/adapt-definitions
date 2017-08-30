@@ -28,6 +28,7 @@ define([
             this.listenTo(Adapt, "app:dataLoaded", this.loadData);
 
             $('body').on('click', "[definition]", this.onAbbrClick);
+            $('body').on('mouseenter', "[definition]", this.onAbbrClick);
         },
 
         loadData: function() {
@@ -133,6 +134,7 @@ define([
         },
 
         onAbbrClick: function(event) {
+            Adapt.trigger("definition:remove");
             var $target = $(event.target);
 
             new DefinitionView({
