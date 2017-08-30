@@ -10,7 +10,7 @@
 ### any json - single instance definition
 ```json
     {
-        body: "This next <abbr definition='Has a brief description'>word</abbr>"
+        "body": "This next <abbr definition='Has a brief description'>word</abbr>"
     }
 ```
 
