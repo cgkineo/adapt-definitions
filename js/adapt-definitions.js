@@ -143,10 +143,15 @@ define([
             var title = Handlebars.compile(this.model.get("title"))(json);
             var body =  Handlebars.compile(this.model.get("body"))(json);
 
-            Adapt.trigger("notify:alert", {
+            Adapt.trigger("notify:prompt", {
                 "title": title,
                 "body": "<div no-definition=\"true\">"+body+"</div>",
-                "confirmText": this.model.get("confirmText") || "Close"
+                "_prompts": [
+                    {
+                        promptText: this.model.get("confirmText") || "Close"
+                    }
+                ],
+                "_showIcon": this.model.get("_showIcon")
             });
 
         }
