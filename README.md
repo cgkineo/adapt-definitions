@@ -18,6 +18,10 @@
 ```json
     "_definitions": {
         "_isEnabled": true,
+        "title": "Definition",
+        "body": "{{{word}}}: {{{definition}}}",
+        "confirmText": "Close",
+        "_showIcon": true,
         "_items": [
             {
                 "words": [
