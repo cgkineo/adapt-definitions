@@ -1,9 +1,8 @@
 define([
     'core/js/adapt',
     'handlebars',
-    './definitionView',
     'core/js/accessibility'
-],function(Adapt, Handlebars, DefinitionView) {
+],function(Adapt, Handlebars) {
 
     function escapeRegExp(text) {
         return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
@@ -28,7 +27,6 @@ define([
             this.listenTo(Adapt, "app:dataLoaded", this.loadData);
 
             $('body').on('click', "[definition]", this.onAbbrClick);
-            $('body').on('mouseenter', "[definition]", this.onAbbrClick);
         },
 
         loadData: function() {
@@ -75,7 +73,7 @@ define([
             });
             $html.find("*").add($html).each(function(index, node) {
 
-                if ($(node).is("[definition]")) {
+                if ($(node).is("[definition], [no-definition]")){
                     return;
                 }
 
@@ -137,12 +135,18 @@ define([
             Adapt.trigger("definition:remove");
             var $target = $(event.target);
 
-            new DefinitionView({
-                $target: $target,
-                model: new Backbone.Model({
-                    text: $target.text(),
-                    definition: $target.attr("definition")
-                })
+            var word = $target.text()
+            var definition = $target.attr("definition");
+
+            var json = _.extend({}, this.model.toJSON(), {word: word, definition: definition});
+
+            var title = Handlebars.compile(this.model.get("title"))(json);
+            var body =  Handlebars.compile(this.model.get("body"))(json);
+
+            Adapt.trigger("notify:alert", {
+                "title": title,
+                "body": "<div no-definition=\"true\">"+body+"</div>",
+                "confirmText": this.model.get("confirmText") || "Close"
             });
 
         }

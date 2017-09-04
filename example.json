@@ -1,6 +1,9 @@
 // course.json
     "_definitions": {
         "_isEnabled": true,
+        "title": "Definition",
+        "body": "{{{word}}}: {{{definition}}}",
+        "confirmText": "Close",
         "_items": [
             {
                 "words": [
