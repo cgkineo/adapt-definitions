@@ -93,7 +93,7 @@ define([
                     if (text.search(this._regexp) < 0) {
                         newChildNodes.push(child);
                         continue;
-                    };
+                    }
 
                     wasChanged = true;
 
@@ -135,7 +135,7 @@ define([
             Adapt.trigger("definition:remove");
             var $target = $(event.target);
 
-            var word = $target.text()
+            var word = $target.text();
             var definition = $target.attr("definition");
 
             var json = _.extend({}, this.model.toJSON(), {word: word, definition: definition});
