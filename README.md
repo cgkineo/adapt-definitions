@@ -3,7 +3,11 @@
 ### course.json
 ```json
     "_definitions": {
-        "_isEnabled": true
+        "_isEnabled": true,
+        "title": "Definition",
+        "body": "{{{word}}}: {{{definition}}}",
+        "confirmText": "Close",
+        "_showIcon": true
     }
 ```
 
