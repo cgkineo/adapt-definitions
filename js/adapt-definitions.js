@@ -1,7 +1,6 @@
 define([
     'core/js/adapt',
-    'handlebars',
-    'core/js/accessibility'
+    'handlebars'
 ],function(Adapt, Handlebars) {
 
     function escapeRegExp(text) {
@@ -27,6 +26,10 @@ define([
             this.listenTo(Adapt, "app:dataLoaded", this.loadData);
 
             $('body').on('click', "[definition]", this.onAbbrClick);
+            $('body').on('keypress', "[definition]", e => {
+              if (e.which !== 13 ) return;
+              this.onAbbrClick(e);
+            });
         },
 
         loadData: function() {
@@ -143,7 +146,7 @@ define([
             var title = Handlebars.compile(this.model.get("title"))(json);
             var body =  Handlebars.compile(this.model.get("body"))(json);
 
-            Adapt.trigger("notify:prompt", {
+            Adapt.notify.popup({
                 "title": title,
                 "body": "<div no-definition=\"true\">"+body+"</div>",
                 "_prompts": [
