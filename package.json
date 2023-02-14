@@ -2,8 +2,8 @@
   "name": "adapt-definitions",
   "version": "1.0.0",
   "framework": ">=2.0.0",
-  "displayName" : "Definitions",
-  "extension" : "definitions",
+  "displayName": "Definitions",
+  "extension": "definitions",
   "description": "Glossary - Popup word definitions",
   "main": "/js/adapt-definitions.js",
   "keywords": [
