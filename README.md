@@ -53,6 +53,6 @@
                 "definition": "Excellent word this one"
             }
         ]
-    }
+    } 
 ```
 
