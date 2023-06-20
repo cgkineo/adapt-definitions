@@ -14,7 +14,7 @@
 ### any json - single instance definition
 ```json
     {
-        "body": "This next <span definition='Has a brief description'>word</span>"
+        "body": "This next <span role='button' tabindex='0' definition='Has a brief description'>word</span>"
     }
 ```
 
