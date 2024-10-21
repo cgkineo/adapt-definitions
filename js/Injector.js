@@ -36,7 +36,7 @@ class Injector extends Backbone.Controller {
   }
 
   processNode(node) {
-    if (node._isBionic) return;
+    if (node._isDefinitioned) return;
     const textNodes = [...node.childNodes]
       .filter(node => node.nodeType === Node.TEXT_NODE)
       .filter(node => node.nodeValue.trim());
@@ -47,7 +47,7 @@ class Injector extends Backbone.Controller {
       if (isInsideForbiddenParents) return;
       const isInsideRequiredParents = Boolean($(parentElement).closest(requireParents).length);
       if (!isInsideRequiredParents) return;
-      parentElement._isBionic = true;
+      parentElement._isDefinitioned = true;
       const value = String(node.nodeValue);
       const children = [];
       const keywords = [...value.matchAll(Adapt.definitions._regexp)];
@@ -81,7 +81,7 @@ class Injector extends Backbone.Controller {
       }
       children.push(...selected.map(copy => {
         parentElement.insertBefore(copy, node);
-        copy._isBionic = true;
+        copy._isDefinitioned = true;
         return copy;
       }));
       parentElement.removeChild(node);
