@@ -72,7 +72,8 @@ class Definitions extends Backbone.Controller {
           promptText: this.model.get('confirmText') || 'Close'
         }
       ],
-      _showIcon: this.model.get('_showIcon')
+      _showIcon: this.model.get('_showIcon'),
+      _classes: 'is-extension is-definitions'
     });
 
   }
