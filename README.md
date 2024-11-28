@@ -6,7 +6,6 @@
         "_isEnabled": true,
         "title": "Definition",
         "body": "{{{word}}}: {{{definition}}}",
-        "confirmText": "Close",
         "_showIcon": true
     }
 ```
@@ -24,7 +23,6 @@
         "_isEnabled": true,
         "title": "Definition",
         "body": "{{{word}}}: {{{definition}}}",
-        "confirmText": "Close",
         "_showIcon": true,
         "_items": [
             {
@@ -53,6 +51,6 @@
                 "definition": "Excellent word this one"
             }
         ]
-    } 
+    }
 ```
 
