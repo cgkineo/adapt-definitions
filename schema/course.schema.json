@@ -1,0 +1,74 @@
+{
+  "$anchor": "definitions-course",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "$patch": {
+    "source": {
+      "$ref": "course"
+    },
+    "with": {
+      "properties": {
+        "_definitions": {
+          "type": "object",
+          "title": "Definitions",
+          "default": {},
+          "required": [
+            "title"
+          ],
+          "properties": {
+            "_isEnabled": {
+              "type": "boolean",
+              "title": "Add definition links to course words",
+              "description": "Controls whether the Definitions extension is enabled or disabled.",
+              "default": false
+            },
+            "title": {
+              "type": "string",
+              "title": "Title",
+              "default": "Definition",
+              "description": "The title for the pop up which displays when a definitions link is selected.",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "body": {
+              "type": "string",
+              "title": "Body",
+              "default": "{{{word}}}: {{{definition}}}",
+              "description": "The body content for the pop up which displays when a definitions link is selected.",
+              "_adapt": {
+                "translatable": true
+              }
+            },
+            "_items": {
+              "type": "array",
+              "title": "Items",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "_words": {
+                    "type": "array",
+                    "title": "Words",
+                    "description": "The collection of word(s) to attach the associated definition to.",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "definition": {
+                    "type": "string",
+                    "title": "Definition",
+                    "default": "",
+                    "description": "The definition for the associated word(s).",
+                    "_adapt": {
+                      "translatable": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

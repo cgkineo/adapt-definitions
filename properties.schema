@@ -2,13 +2,88 @@
   "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
+  "required": false,
   "properties": {
     "pluginLocations": {
       "type": "object",
+      "required": true,
       "properties": {
-        "config": {
+        "course": {
           "type": "object",
-          "properties": {}
+          "properties": {
+            "_definitions": {
+              "type": "object",
+              "required": false,
+              "legend": "Definitions",
+              "properties": {
+                "_isEnabled": {
+                  "type": "boolean",
+                  "required": true,
+                  "default": false,
+                  "title": "Add definition links to course words",
+                  "inputType": "Checkbox",
+                  "validators": [],
+                  "help": "Controls whether the Definitions extension is enabled or disabled."
+                },
+                "title": {
+                  "type": "string",
+                  "default": "Definition",
+                  "required": true,
+                  "title": "Title",
+                  "inputType": "Text",
+                  "validators": ["required"],
+                  "help": "The title for the pop up which displays when a definitions link is selected.",
+                  "translatable": true
+                },
+                "body": {
+                  "type": "string",
+                  "default": "{{{word}}}: {{{definition}}}",
+                  "required": false,
+                  "title": "Body",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "The body content for the pop up which displays when a definitions link is selected.",
+                  "translatable": true
+                },
+                "_items": {
+                  "type": "array",
+                  "required": true,
+                  "title": "Items",
+                  "items": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                      "_words": {
+                        "type": "array",
+                        "required": false,
+                        "title": "Words",
+                        "items": {
+                          "type": "string",
+                          "required": false,
+                          "default": "",
+                          "title": "Word",
+                          "inputType": "Text",
+                          "validators": [],
+                          "help": "The collection of word(s) to attach the associated definition to.",
+                          "translatable": true
+                        }
+                      },
+                      "definition": {
+                        "type": "string",
+                        "default": "",
+                        "required": false,
+                        "title": "Definition",
+                        "inputType": "Text",
+                        "validators": [],
+                        "help": "The definition for the associated word(s).",
+                        "translatable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
