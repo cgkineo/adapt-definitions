@@ -64,14 +64,13 @@ class Definitions extends Backbone.Controller {
     const title = Handlebars.compile(this.model.get('title'))(json);
     const body = Handlebars.compile(this.model.get('body'))(json);
 
-    notify.popup({
+    const promptText = this.model.get('confirmText');
+    const hasPromptText = Boolean(promptText);
+    const type = hasPromptText ? 'prompt' : 'popup';
+    notify[type]({
       title,
       body: '<div no-definition="true">' + body + '</div>',
-      _prompts: [
-        {
-          promptText: this.model.get('confirmText') || 'Close'
-        }
-      ],
+      _prompts: [{ promptText }],
       _showIcon: this.model.get('_showIcon'),
       _classes: 'is-extension is-definitions'
     });
