@@ -55,7 +55,7 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "_words": {
+                  "words": {
                     "type": "array",
                     "title": "Words",
                     "description": "The collection of word(s) to attach the associated definition to.",
