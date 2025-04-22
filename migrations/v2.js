@@ -2,18 +2,42 @@ import { describe, whereFromPlugin, mutateContent, checkContent, updatePlugin, g
 import _ from 'lodash';
 
 describe('Definitions - v2.2.2 to v2.2.3', async () => {
-  let course, courseDefinitionsGlobals, components;
+  let course, courseDefinitions, courseDefinitionItems;
 
   whereFromPlugin('Definitions - from v2.2.2', { name: 'adapt-definitions', version: '<2.2.3' });
 
-  mutateContent('Definitions - Change _words array to words', async (content) => {
+  mutateContent('Definitions - Check for course _definitions', async (content) => {
     course = getCourse();
-    // if (!_.has(course, '_globals._extensions._tutor')) _.set(course, '_globals._extensions._tutor', {});
-    // courseDefinitionsGlobals = course._globals._extensions._tutor;
+    if (!_.has(course, '_definitions')) _.set(course, '_definitions', {});
+    courseDefinitions = course._definitions;
     return true;
   });
-  checkContent('Definitions - check globals _tutor attribute', async content => {
-    // if (courseDefinitionsGlobals === undefined) throw new Error('Definitions - globals _tutor invalid');
+
+  mutateContent('Definitions - Check for course _definitions _items', async (content) => {
+    if (!_.has(courseDefinitions, '_items')) _.set(courseDefinitions, '_items', []);
+    courseDefinitionItems = course._definitions._items;
+    return true;
+  });
+
+  mutateContent('Definitions - Change item _words array to words', async (content) => {
+    courseDefinitionItems.forEach(item => {
+      // If has _words array, rename to words
+    });
+    return true;
+  });
+
+  checkContent('Definitions - check course _definitions', async content => {
+    if (courseDefinitions === undefined) throw new Error('Definitions - course _definitions invalid');
+    return true;
+  });
+
+  checkContent('Definitions - check course _definitions _items', async content => {
+    if (courseDefinitionItems === undefined) throw new Error('Definitions - course _definitions _items invalid');
+    return true;
+  });
+
+  checkContent('Definitions - check item words array', async content => {
+    // If has _words array, invalid
     return true;
   });
 
