@@ -21,7 +21,11 @@ describe('Definitions - v2.2.2 to v2.2.3', async () => {
 
   mutateContent('Definitions - Change item _words array to words', async (content) => {
     courseDefinitionItems.forEach(item => {
-      // If has _words array, rename to words
+      if (_.has(item, '_words')) {
+        const words = Object.assign([], item._words);
+        _.set(item, 'words', words);
+        delete item._words;
+      }
     });
     return true;
   });
@@ -37,7 +41,10 @@ describe('Definitions - v2.2.2 to v2.2.3', async () => {
   });
 
   checkContent('Definitions - check item words array', async content => {
-    // If has _words array, invalid
+    const isValid = courseDefinitionItems.every(item =>
+      _.has(item, 'words') && !_.has(item, '_words')
+    );
+    if (!isValid) throw new Error('Definitions - words array invalid');
     return true;
   });
 
