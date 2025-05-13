@@ -21,11 +21,10 @@ describe('Definitions - v2.2.2 to v2.2.3', async () => {
 
   mutateContent('Definitions - Change item _words array to words', async (content) => {
     courseDefinitionItems.forEach(item => {
-      if (_.has(item, '_words')) {
-        const words = Object.assign([], item._words);
-        _.set(item, 'words', words);
-        delete item._words;
-      }
+      if (!_.has(item, '_words')) return;
+      const words = Object.assign([], item._words);
+      _.set(item, 'words', words);
+      delete item._words;
     });
     return true;
   });
