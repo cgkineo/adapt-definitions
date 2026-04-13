@@ -14,6 +14,7 @@ class Injector extends Backbone.Controller {
   }
 
   onLoaded() {
+    if (!Adapt.definitions?._table) return;
     this.processDocument();
     this.startWatching();
   }
