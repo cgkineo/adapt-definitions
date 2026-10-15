@@ -14,8 +14,10 @@ class Definitions extends Backbone.Controller {
     this.listenTo(Adapt, 'app:dataLoaded', this.loadData);
 
     $('body').on('click', '[definition]', this.onAbbrClick);
-    $('body').on('keypress', '[definition]', e => {
-      if (e.which !== 13) return;
+    // Open on Enter or Space, like a native button. Space would otherwise scroll the page
+    $('body').on('keydown', '[definition]', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
       this.onAbbrClick(e);
     });
   }
